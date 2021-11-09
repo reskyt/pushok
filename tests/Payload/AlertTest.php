@@ -90,12 +90,13 @@ class AlertTest extends TestCase
             ->setActionLocKey('action-loc-key')
             ->setLocKey('loc-key')
             ->setLocArgs(['loc-arg'])
+            ->setUrl('testurl')
             ->setLaunchImage('launch-image');
 
         $this->assertJsonStringEqualsJsonString(
             '{"title":"title","subtitle":"subtitle","body":"body","title-loc-key":"title-loc-key",' .
             '"title-loc-args":["loc-arg"],"action-loc-key":"action-loc-key","loc-key":"loc-key",' .
-            '"loc-args":["loc-arg"],"launch-image":"launch-image"}',
+            '"loc-args":["loc-arg"],"launch-image":"launch-image","url":"testurl"}',
             $alert->toJson()
         );
     }

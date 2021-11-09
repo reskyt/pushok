@@ -29,6 +29,7 @@ class Alert implements \JsonSerializable
     const ALERT_LOC_KEY = 'loc-key';
     const ALERT_LOC_ARGS_KEY = 'loc-args';
     const ALERT_LAUNCH_IMAGE_KEY = 'launch-image';
+    const ALERT_URL_KEY = 'url';
 
     /**
      * A short string describing the purpose of the notification.
@@ -50,6 +51,14 @@ class Alert implements \JsonSerializable
      * @var string
      */
     private $body;
+
+    /**
+     * A short string describing the url of the notification.
+     *
+     * @var string
+     * @deprecated
+     */
+    private $url;
 
     /**
      * The key to a title string in the Localizable.strings file for the current localization.
@@ -123,6 +132,29 @@ class Alert implements \JsonSerializable
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Get Alert url.
+     *
+     * @return string
+     * @deprecated
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set Alert url.
+     *
+     * @param string $value
+     * @return Alert
+     */
+    public function setUrl(string $value): Alert
+    {
+        $this->url = $value;
+        return $this;
     }
 
     /**
@@ -363,6 +395,10 @@ class Alert implements \JsonSerializable
 
         if (is_string($this->launchImage)) {
             $alert[self::ALERT_LAUNCH_IMAGE_KEY] = $this->launchImage;
+        }
+
+        if (is_string($this->url)) {
+            $alert[self::ALERT_URL_KEY] = $this->url;
         }
 
         return $alert;
